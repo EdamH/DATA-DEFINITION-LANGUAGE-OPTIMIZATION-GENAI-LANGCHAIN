@@ -344,3 +344,6 @@ We welcome contributions to enhance this project! Here's how you can get involve
 <a href="https://https://github.com/EdamH/DATA-DEFINITION-LANGUAGE-OPTIMIZATION-GENAI-LANGCHAIN/graphs/contributors">
     <img src="https://contrib.rocks/image?repo=EdamH/DATA-DEFINITION-LANGUAGE-OPTIMIZATION-GENAI-LANGCHAIN" />
 </a>
+<a href="https://https://github.com/faraheloumi/DATA-DEFINITION-LANGUAGE-OPTIMIZATION-GENAI-LANGCHAIN/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=faraheloumi/DATA-DEFINITION-LANGUAGE-OPTIMIZATION-GENAI-LANGCHAIN" />
+</a>
