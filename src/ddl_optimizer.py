@@ -5,17 +5,17 @@ class DDLOptimizer:
         self.hf_pipeline = hf_pipeline
         self.prompts = prompts
     
-    def optimize_ddl(self, ddl_queries, sql_contexts):
-        if ddl_queries and sql_contexts:
+    def optimize_ddl(self, ddl_queries, sql_context):
+        if ddl_queries and sql_context:
             input_data = [{
-                "context": f"Table: {context} | Operation type: CREATE TABLE",
+                "context": sql_context,
                 "sql_statement": ddl
-            } for context, ddl in zip(sql_contexts, ddl_queries)]
-            chain = self.prompts | self.hf_pipeline
+            } for ddl in ddl_queries]
+            chain = self.prompts.get_optimized_ddl_prompt() | self.hf_pipeline
             runnable_each = RunnableEach(bound=chain)
 
             try:
-                optimized_ddls = runnable_each.invoke(input_data)
+                return runnable_each.invoke(input_data)
             except Exception as e:
                 print(f"Erreur lors de l'optimisation : {e}")
-                optimized_ddls = []
+                return []
