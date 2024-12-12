@@ -1,4 +1,4 @@
-from langchain_core.runnables.base import RunnableEach
+from langchain_core.runnables.base import RunnableEach, RunnableLambda
 
 class DDLOptimizer:
     def __init__(self, hf_pipeline, prompts):
@@ -11,7 +11,15 @@ class DDLOptimizer:
                 "context": sql_context,
                 "sql_statement": ddl
             } for ddl in ddl_queries]
-            chain = self.prompts.get_optimized_ddl_prompt() | self.hf_pipeline
+            def print_result_step(resp):
+                print(resp)
+                return resp
+            def print_random(resp):
+                print(f"This is the PROMPT! \n{resp}\n")
+                return resp
+            random_runnable = RunnableLambda(print_random)
+            print_result_step_runnable = RunnableLambda(print_result_step)
+            chain = self.prompts.get_optimized_ddl_prompt() | random_runnable | self.hf_pipeline | print_result_step_runnable
             runnable_each = RunnableEach(bound=chain)
 
             try:
