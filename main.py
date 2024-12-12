@@ -32,9 +32,7 @@ analyzer = SQLAnalyzer(hf_pipeline, hf_instruct_pipeline, extractor, global_extr
 optimizer = DDLOptimizer(hf_pipeline, prompts)
 
 # Run full analysis pipeline
-# sql_context = analyzer.invoke_full_pipeline(queries)
-with open('descriptions.txt', 'r') as f:
-    sql_context = f.read()
+sql_context = analyzer.invoke_full_pipeline(queries)
 
 print("==== BEWARE! I'm OPTIMIZING now! ====\n")
 
